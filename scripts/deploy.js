@@ -14,6 +14,7 @@ const BACKGROUND = (String(process.env.TIDBYT_BACKGROUND).toLowerCase() === 'tru
 const MAX_AGE = process.env.MAX_AGE
 const PRINT_LOG = (String(process.env.PRINT_LOG).toLowerCase() === 'true')
 const RANDOM_MESSAGE = process.env.RANDOM_MESSAGE
+const SHOW_UNICODE_NAME = process.env.SHOW_UNICODE_NAME
 const TIDBYT_API_TOKEN = process.env.TIDBYT_API_TOKEN
 const TIDBYT_APP_PATH = process.env.TIDBYT_APP_PATH
 const TIDBYT_APP_NAME = process.env.TIDBYT_APP_NAME
@@ -34,7 +35,7 @@ const push = () => {
 
 	if (PRINT_LOG) console.log(Date())
 
-	let render_pixlet = child.spawn('pixlet', ['render', `${TIDBYT_APP_PATH}/${TIDBYT_APP_NAME}.star`, `airtable_api_token=${AIRTABLE_API_TOKEN}`, `airtable_base_id=${AIRTABLE_BASE_ID}`, `airtable_table_id=${AIRTABLE_TABLE_ID}`, `airtable_ttl_seconds=${AIRTABLE_TTL_SECONDS}`, `max_age=${MAX_AGE}`, `random_message=${RANDOM_MESSAGE}`, `timezone=${TIMEZONE}`, `print_log=${PRINT_LOG}`])
+	let render_pixlet = child.spawn('pixlet', ['render', `${TIDBYT_APP_PATH}/${TIDBYT_APP_NAME}.star`, `airtable_api_token=${AIRTABLE_API_TOKEN}`, `airtable_base_id=${AIRTABLE_BASE_ID}`, `airtable_table_id=${AIRTABLE_TABLE_ID}`, `airtable_ttl_seconds=${AIRTABLE_TTL_SECONDS}`, `max_age=${MAX_AGE}`, `random_message=${RANDOM_MESSAGE}`, `show_unicode_name=${SHOW_UNICODE_NAME}`, `timezone=${TIMEZONE}`, `print_log=${PRINT_LOG}`])
 
 	render_pixlet.stdout.setEncoding('utf8')
 	render_pixlet.stdout.on('data', (data) => {
