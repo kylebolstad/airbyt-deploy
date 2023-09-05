@@ -10,8 +10,12 @@ const AIRTABLE_API_TOKEN = process.env.AIRTABLE_API_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID
 const AIRTABLE_TTL_SECONDS = process.env.AIRTABLE_TTL_SECONDS
+const AUTHOR_FONT = process.env.AUTHOR_FONT
+const AUTHOR_TEXT_COLOR = process.env.AUTHOR_TEXT_COLOR
 const BACKGROUND = (String(process.env.TIDBYT_BACKGROUND).toLowerCase() === 'true')
 const MAX_AGE = process.env.MAX_AGE
+const MESSAGE_FONT  = process.env.MESSAGE_FONT
+const MESSAGE_TEXT_COLOR = process.env.MESSAGE_TEXT_COLOR
 const PRINT_LOG = (String(process.env.PRINT_LOG).toLowerCase() === 'true')
 const RANDOM_MESSAGE = process.env.RANDOM_MESSAGE
 const SHOW_UNICODE = process.env.SHOW_UNICODE
@@ -35,7 +39,7 @@ const push = () => {
 
 	if (PRINT_LOG) console.log(Date())
 
-	let render_pixlet = child.spawn('pixlet', ['render', `${TIDBYT_APP_PATH}/${TIDBYT_APP_NAME}.star`, `airtable_api_token=${AIRTABLE_API_TOKEN}`, `airtable_base_id=${AIRTABLE_BASE_ID}`, `airtable_table_id=${AIRTABLE_TABLE_ID}`, `airtable_ttl_seconds=${AIRTABLE_TTL_SECONDS}`, `max_age=${MAX_AGE}`, `random_message=${RANDOM_MESSAGE}`, `show_unicode=${SHOW_UNICODE}`, `timezone=${TIMEZONE}`, `print_log=${PRINT_LOG}`])
+	let render_pixlet = child.spawn('pixlet', ['render', `${TIDBYT_APP_PATH}/${TIDBYT_APP_NAME}.star`, `airtable_api_token=${AIRTABLE_API_TOKEN}`, `airtable_base_id=${AIRTABLE_BASE_ID}`, `airtable_table_id=${AIRTABLE_TABLE_ID}`, `airtable_ttl_seconds=${AIRTABLE_TTL_SECONDS}`, `max_age=${MAX_AGE}`, `random_message=${RANDOM_MESSAGE}`, `show_unicode=${SHOW_UNICODE}`, `author_font=${AUTHOR_FONT}`, `author_text_color=${AUTHOR_TEXT_COLOR}`, `message_font=${MESSAGE_FONT}`, `message_text_color=${MESSAGE_TEXT_COLOR}`, `timezone=${TIMEZONE}`, `print_log=${PRINT_LOG}`])
 
 	render_pixlet.stdout.setEncoding('utf8')
 	render_pixlet.stdout.on('data', (data) => {
