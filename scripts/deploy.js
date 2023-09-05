@@ -6,32 +6,9 @@ import fs from 'fs'
 import * as child from 'child_process'
 import 'dotenv/config'
 
-const parameters = [
-	"AIRTABLE_API_TOKEN",
-	"AIRTABLE_BASE_ID",
-	"AIRTABLE_TABLE_ID",
-	"AIRTABLE_TTL_SECONDS",
-	"AUTHOR_FONT",
-	"AUTHOR_TEXT_COLOR",
-	"MAX_AGE",
-	"MESSAGE_FONT",
-	"MESSAGE_TEXT_COLOR",
-	"PRINT_LOG",
-	"RANDOM_MESSAGE",
-	"SEPARATOR_LINE_COLOR",
-	"SHOW_UNICODE",
-	"TIDBYT_API_TOKEN",
-	"TIDBYT_APP_NAME",
-	"TIDBYT_APP_PATH",
-	"TIDBYT_BACKGROUND",
-	"TIDBYT_DEVICE_ID",
-	"TIDBYT_INSTALLATION_ID",
-	"TIMEZONE",
-]
-
 let render_parameters = []
 
-parameters.forEach((key) => {
+Object.keys(process.env).slice(Object.keys(process.env).indexOf('_') + 1).forEach((key) => {
 	let value = process.env[key]
 
 	if (value?.length) {
