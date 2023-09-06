@@ -6,6 +6,8 @@ import fs from 'fs'
 import * as child from 'child_process'
 import 'dotenv/config'
 
+const DEFAULT_TIDBYT_CYCLE=15
+
 let render_parameters = []
 
 Object.keys(process.env).slice(Object.keys(process.env).indexOf('_') + 1).forEach((key) => {
@@ -29,7 +31,7 @@ const axios_config = {
 	headers: { Authorization: `Bearer ${TIDBYT_API_TOKEN}` }
 }
 
-axios_throttle.use(axios, { requestsPerSecond: AIRTABLE_TTL_SECONDS })
+axios_throttle.use(axios, { requestsPerSecond: TIDBYT_CYCLE || DEFAULT_TIDBYT_CYCLE })
 
 let previous_hash = ''
 let installation_exists = false;
@@ -137,6 +139,6 @@ const push = () => {
 
 const push_interval = setInterval(() => {
 	push()
-}, AIRTABLE_TTL_SECONDS * 1000)
+}, (TIDBYT_CYCLE || DEFAULT_TIDBYT_CYCLE) * 1000)
 
 push()
